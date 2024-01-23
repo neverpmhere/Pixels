@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Your Website</title>
-        <style>
+    <title>Your Website</title>
+    <style>
         body {
             margin: 0;
             font-family: 'Oxygen', sans-serif;
@@ -28,6 +28,25 @@
             box-sizing: border-box;
         }
 
+        .table-container {
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
         /* Стили для полосы прокрутки */
         ::-webkit-scrollbar {
             width: 12px;
@@ -46,8 +65,8 @@
 </head>
 <body>
 
-    <h2>Таблица 3x100</h2>
-    <table>
+    <div class="container">
+         <table>
         <thead>
             <tr>
                 <th>Заголовок 1</th>
@@ -68,6 +87,8 @@
             </tr>
         </tbody>
     </table>
+        </div>
+    </div>
 
 </body>
 </html>
