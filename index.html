@@ -3,39 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблица 3x100</title>
+       <title>Your Website</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
-            padding: 0;
+            font-family: 'Oxygen', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
+            background-color: #222034;
+            font-size: 24px; /* Размер основного шрифта */
         }
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        table {
-            border-collapse: collapse;
+        .container {
+            display: flex;
+            height: 80vh; /* 80% высоты страницы */
             width: 80%;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #25293f; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid black; /* Черная обводка контейнера */
         }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
+        .sidebar {
+            width: 20%;
+            height: 100%; /* Заполнение всей высоты сайдбара */
+            background-color: rgba(33, 31, 63, 0.9); /* полупрозрачный фон */
+            color: #ecf0f1; /* светло-серый */
+            padding: 20px;
+            box-sizing: border-box;
+            font-size: 24px; /* Размер шрифта сайдбара */
+            border-right: 2px solid black; /* Черная обводка сайдбара */
         }
 
-        th {
-            background-color: #f2f2f2;
+        .main-content {
+            width: 80%;
+            height: 100%; /* Заполнение всей высоты основного контента */
+            padding: 20px;
+            box-sizing: border-box;
+            color: #ecf0f1; /* светло-серый */
+            overflow-y: auto; /* Добавлено для возможности прокрутки основного контента */
+            font-size: 24px; /* Размер шрифта основного контента */
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .category-list li:hover {
+            text-decoration: underline;
+        }
+
+        .category-list li.active {
+            font-weight: bold; /* Жирный текст для активной категории в сайдбаре */
+        }
+
+        .category-content {
+            display: none;
+        }
+
+        .category-content.active {
+            display: block;
+        }
+
+        /* Стили для полосы прокрутки */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #25293f; /* Цвет фона трека */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #211f3f; /* Цвет ползунка */
+            border-radius: 10px;
+            border: 3px solid #25293f; /* Цвет обводки ползунка */
         }
     </style>
 </head>
