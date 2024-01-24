@@ -69,6 +69,32 @@
             border-radius: 10px;
             border: 3px solid #25293f;
         }
+        
+        body.light-theme {
+        background-color: #ecf0f1;
+        color: #222034;
+        }
+
+.container.light-theme {
+  background-color: #fff;
+}
+
+.toggle-theme-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 24px;
+  background-color: #fff;
+  color: #333;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s;
+}
     </style>
 </head>
 <body>
@@ -137,8 +163,24 @@
         window.onload = function () {
             readFile();
         };
+
+          function toggleTheme() {
+    const body = document.body;
+    const container = document.querySelector('.container');
+    const toggleBtn = document.querySelector('.toggle-theme-btn');
+
+    if (body.classList.contains('light-theme')) {
+      body.classList.remove('light-theme');
+      container.style.backgroundColor = '#25293f';
+      toggleBtn.textContent = '🌙';
+    } else {
+      body.classList.add('light-theme');
+      container.style.backgroundColor = '#fff';
+      toggleBtn.textContent = '☀️';
+    }
+  }
     </script>
 
-
+<body class="light-theme">
 </body>
 </html>
