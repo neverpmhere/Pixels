@@ -71,7 +71,7 @@
 
     <div class="container">
         <div class="table-container">
-            <table>
+            <table id="myTable">
                 <thead>
                     <tr>
                         <th>LEVEL</th>
@@ -79,32 +79,64 @@
                         <th>LEVEL UP</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>+100</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>100</td>
-                        <td>+216</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>316</td>
-                        <td>+345</td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>+100</td>
-                    </tr>
+                <tbody id="tableBody">
                 </tbody>
             </table>
         </div>
     </div>
 
+    <script>
+        // read
+        function readFile(input) {
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var content = e.target.result;
+                processFileContent(content);
+            };
+
+            reader.readAsText(file);
+        }
+
+        // func
+        function processFileContent(content) {
+            var rows = content.split('\n');
+            var tableBody = document.getElementById('tableBody');
+
+            for (var i = 0; i < rows.length; i++) {
+                var rowValues = rows[i].split(' ');
+
+                var row = document.createElement('tr');
+                for (var j = 0; j < rowValues.length; j++) {
+                    var cell = document.createElement('td');
+                    cell.textContent = rowValues[j];
+                    row.appendChild(cell);
+                }
+
+                tableBody.appendChild(row);
+            }
+        }
+
+        // input
+        var fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = '.txt';
+        fileInput.onchange = function () {
+            var tableBody = document.getElementById('tableBody');
+            // clear table before download
+            tableBody.innerHTML = '';
+            readFile(this);
+        };
+
+        // auto
+        window.onload = function () {
+            fileInput.click();
+        };
+
+        // add input
+        document.body.appendChild(fileInput);
+    </script>
+
 </body>
 </html>
-
