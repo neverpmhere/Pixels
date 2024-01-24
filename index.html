@@ -85,8 +85,6 @@
         </div>
     </div>
     
-    <script>
-        // func
         function processFileContent(content) {
             var rows = content.split('\n');
             var tableBody = document.getElementById('tableBody');
@@ -97,7 +95,17 @@
                 var row = document.createElement('tr');
                 for (var j = 0; j < rowValues.length; j++) {
                     var cell = document.createElement('td');
-                    cell.textContent = rowValues[j];
+                    var value = parseFloat(rowValues[j].replace(/\s/g, ''));
+                    
+                    // Добавление разделителя для тысяч и больших чисел
+                    var formattedValue = value.toLocaleString();
+
+                    // Добавление "+" в начало всех цифр в третьем столбце
+                    if (j === 2) {
+                        formattedValue = '+' + formattedValue;
+                    }
+
+                    cell.textContent = formattedValue;
                     row.appendChild(cell);
                 }
 
@@ -105,10 +113,10 @@
             }
         }
 
-        // read
+        // Функция для чтения файла
         function readFile() {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'table.txt', true);
+            xhr.open('GET', 'tables.txt', true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
@@ -119,7 +127,7 @@
             xhr.send();
         }
 
-        // call
+        // Вызов функции чтения файла при загрузке страницы
         window.onload = function () {
             readFile();
         };
