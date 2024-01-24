@@ -85,24 +85,22 @@
         </div>
     </div>
     
-          <script>
+    <script>
         // Функция для обработки содержимого файла и вставки в таблицу
         function processFileContent(content) {
             var rows = content.split('\n');
             var tableBody = document.getElementById('tableBody');
 
-            for (var i = 0; i < rows.length; i++) {
+            for (var i = 0; i < rows.length && i < 101; i++) { // Ограничение до 101 строки
                 var rowValues = rows[i].split(' ');
 
                 var row = document.createElement('tr');
                 for (var j = 0; j < rowValues.length; j++) {
                     var cell = document.createElement('td');
                     var value = parseFloat(rowValues[j].replace(/\s/g, ''));
-                    
-                    // Добавление разделителя для тысяч и больших чисел
+
                     var formattedValue = value.toLocaleString();
 
-                    // Добавление "+" в начало всех цифр в третьем столбце
                     if (j === 2) {
                         formattedValue = '+' + formattedValue;
                     }
@@ -118,7 +116,7 @@
         // Функция для чтения файла
         function readFile() {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'table.txt', true);
+            xhr.open('GET', 'tables.txt', true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
