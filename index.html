@@ -42,7 +42,7 @@
             border: 1px solid #ddd;
             padding: 12px;
             text-align: center;
-            color: #000; /* Черный цвет текста в ячейках */
+            color: #000; /* black text in tables */
             font-family: 'Press Start 2P', sans-serif;
         }
 
@@ -51,7 +51,7 @@
             color: #000;
         }
 
-        /* Стили для полосы прокрутки */
+        /* style for rollbar */
         ::-webkit-scrollbar {
             width: 12px;
         }
@@ -84,21 +84,8 @@
             </table>
         </div>
     </div>
-
+    
     <script>
-        // read
-        function readFile(input) {
-            var file = input.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                var content = e.target.result;
-                processFileContent(content);
-            };
-
-            reader.readAsText(file);
-        }
-
         // func
         function processFileContent(content) {
             var rows = content.split('\n');
@@ -118,24 +105,24 @@
             }
         }
 
-        // input
-        var fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = '.txt';
-        fileInput.onchange = function () {
-            var tableBody = document.getElementById('tableBody');
-            // clear table before download
-            tableBody.innerHTML = '';
-            readFile(this);
-        };
+        // read
+        function readFile() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'tables.txt', true);
 
-        // auto
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    processFileContent(xhr.responseText);
+                }
+            };
+
+            xhr.send();
+        }
+
+        // call
         window.onload = function () {
-            fileInput.click();
+            readFile();
         };
-
-        // add input
-        document.body.appendChild(fileInput);
     </script>
 
 </body>
