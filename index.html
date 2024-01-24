@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
+    <title>Pixels Level System</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -36,7 +36,8 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            border: 2px solid #000; /* Цвет границы таблицы */
+            table-layout: fixed; 
+            border: 2px solid #000;
         }
 
         th, td {
@@ -45,7 +46,7 @@
             text-align: center;
             color: #000; 
             font-family: 'Press Start 2P', sans-serif;
-            border: 2px solid #000; /* Цвет границы таблицы */
+            border: 2px solid #000;
         }
 
         th {
@@ -71,19 +72,20 @@
             <table id="myTable">
                 <thead>
                     <tr>
-                        <th>LEVEL</th>
-                        <th>TOTAL XP</th>
-                        <th>LEVEL UP</th>
+                        <th style="width: 33.33%">LEVEL</th>
+                        <th style="width: 33.33%">TOTAL XP</th>
+                        <th style="width: 33.33%">LEVEL UP</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
+                    <!-- tables.txt -->
                 </tbody>
             </table>
         </div>
     </div>
     
     <script>
-        // Функция для обработки содержимого файла и вставки в таблицу
+        // func
         function processFileContent(content) {
             var rows = content.split('\n');
             var tableBody = document.getElementById('tableBody');
@@ -110,7 +112,7 @@
             }
         }
 
-        // Функция для чтения файла
+        // read
         function readFile() {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', 'table.txt', true);
@@ -124,7 +126,7 @@
             xhr.send();
         }
 
-        // Вызов функции чтения файла при загрузке страницы
+        // call
         window.onload = function () {
             readFile();
         };
